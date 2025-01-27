@@ -1,4 +1,3 @@
-import { faSearch } from './../../../../../../node_modules/@fortawesome/free-solid-svg-icons/faSearch.d';
 import { WeatherDatas } from 'src/app/models/interfaces/WeatherDatas';
 import { WeatherService } from './../../services/weather.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
@@ -48,3 +47,4 @@ export class WheaterHomeComponent implements OnInit, OnDestroy {
   }
 
 }
+
