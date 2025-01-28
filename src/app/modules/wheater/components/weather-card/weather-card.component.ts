@@ -16,4 +16,5 @@ export class WeatherCardComponent {
   maxTemperatureIcon = faTemperatureHigh;
   humidityIcon = faDroplet;
   windIcon = faWind;
+isLoading: any;
 }

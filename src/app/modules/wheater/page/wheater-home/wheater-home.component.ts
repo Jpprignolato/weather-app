@@ -10,34 +10,38 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
   styleUrls: [],
 })
 export class WheaterHomeComponent implements OnInit, OnDestroy {
-  private readonly destroy$: Subject <void> = new Subject();
+  private readonly destroy$: Subject<void> = new Subject();
   initialCityName = 'Recife';
   weatherDatas!: WeatherDatas;
+  isLoading = false;  // Variável de controle de carregamento
   searchIcon = faMagnifyingGlass;
 
+  constructor(private WeatherService: WeatherService) {}
 
-  constructor(private WeatherService: WeatherService) { }
   ngOnInit(): void {
     this.getWeatherDatas(this.initialCityName);
   }
 
   getWeatherDatas(cityName: string): void {
+    this.isLoading = true; // Ativa o carregamento
     this.WeatherService.getWeatherDatas(cityName)
-    .pipe(takeUntil(this.destroy$))
-    .subscribe({
-      next: (response) => {
-        response && (this.weatherDatas = response);
-        console.log(this.weatherDatas);
-      },
-      error: (error) => {
-        console.log(error);
-      }
-    });
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (response) => {
+          this.isLoading = false; // Desativa o carregamento
+          response && (this.weatherDatas = response);
+          console.log(this.weatherDatas);
+        },
+        error: (error) => {
+          this.isLoading = false; // Desativa o carregamento em caso de erro
+          console.log(error);
+        }
+      });
   }
 
-  onSubmit(): void{
+  onSubmit(): void {
     this.getWeatherDatas(this.initialCityName);
-    console.log('Chamou a função')
+    console.log('Chamou a função');
     this.initialCityName = '';
   }
 
@@ -45,6 +49,4 @@ export class WheaterHomeComponent implements OnInit, OnDestroy {
     this.destroy$.next();
     this.destroy$.complete();
   }
-
 }
-

@@ -1,12 +1,12 @@
-<div class="container" *ngIf="weatherDatasInput">
+<div class="container" *ngIf="!isLoading; else loading">
   <!-- Parte Superior -->
   <div class="upper-data">
     <img src="../../../../../assets/sun.jpg" *ngIf="weatherDatasInput.main.temp > 25" />
-    <img src="../../../../../assets/cold1.jpg" *ngIf="weatherDatasInput.main.temp < 25" />
+    <img src="../../../../../assets/cold1.jpg" *ngIf="weatherDatasInput.main.temp <= 25" />
     <div class="weather-data">
       <div class="location">{{ weatherDatasInput.name }}</div>
-      <div class="temperature">
-        {{ weatherDatasInput.main.temp | number: "1.0-0" }}°C
+      <div class="temperature" [ngClass]="{'hot': weatherDatasInput.main.temp > 25, 'cold': weatherDatasInput.main.temp <= 25}">
+        {{ weatherDatasInput.main.temp | number: '1.0-0' }}°C
       </div>
     </div>
   </div>
@@ -22,7 +22,7 @@
           <span>Mínima</span>
         </div>
         <div class="info-block-value">
-          {{ weatherDatasInput.main.temp_min | number: "1.0-0" }}°C
+          {{ weatherDatasInput.main.temp_min | number: '1.0-0' }}°C
         </div>
       </div>
 
@@ -33,7 +33,7 @@
           <span>Máxima</span>
         </div>
         <div class="info-block-value">
-          {{ weatherDatasInput.main.temp_max | number: "1.0-0" }}°C
+          {{ weatherDatasInput.main.temp_max | number: '1.0-0' }}°C
         </div>
       </div>
 
@@ -61,3 +61,8 @@
     </div>
   </div>
 </div>
+
+<!-- Template de Carregamento -->
+<ng-template #loading>
+  <div class="loading"></div> <!-- Seu ícone de carregamento aqui -->
+</ng-template>
