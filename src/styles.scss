@@ -1,13 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
-
-/* You can add global styles to this file, and also import other style files */
 :root {
-  --blue-1: #2242c2;
-  --blue-2: #0368ec;
-  --white: #fff;
-  --grey-1: #ededed;
-  --shadow-dark: rgba(0, 0, 0, 0.3);
-  --shadow-light: rgba(255, 255, 255, 0.277);
+  /* Paleta de Cores */
+  --primary-blue: #2a77d1;
+  --secondary-blue: #1b4b8f;
+  --background-gradient-start: #bbbbbb; /* Azul claro */
+  --background-gradient-end: #2f3b50;   /* Branco acinzentado */
+  --white: #ffffff;
+  --text-dark: #333333;
+  --text-muted: #6c757d;
+  --accent-yellow: #ffffff;
+  --shadow: rgba(0, 0, 0, 0.4);
+
+  /* Tipografia */
+  --font-family: 'Roboto', sans-serif;
+  --font-size-small: 0.85rem;
+  --font-size-medium: 1rem;
+  --font-size-large: 1.5rem;
+  --font-size-xl: 2.5rem;
+
+  /* Bordas e Transições */
+  --border-radius: 10px;
+  --transition: 0.2s ease-in-out;
 }
 
 * {
@@ -17,154 +29,135 @@
 }
 
 body {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 16px;
-  width: 100%;
-  height: 100%;
-  background-color: var(--blue-1);
+  font-family: var(--font-family);
+  background: linear-gradient(
+    to bottom,
+    var(--background-gradient-start),
+    var(--background-gradient-end)
+  );
+  color: var(--text-dark);
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-fa-icon {
-  color: #ffffff;
+  height: 100vh;
 }
 
 .container {
-  width: 500px;
-  height: 80vh;
-  background-color: var(--blue-2);
-  border-radius: 20px;
-  box-shadow: 10px 10px 10px var(--shadow-dark);
-  margin-top: 3rem;
-}
-
-.upper-data {
-  position: relative;
+  width: 90%;
+  max-width: 420px;
+  background: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 8px var(--shadow);
   overflow: hidden;
-  width: 100%;
-  height: 50%;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-}
-
-.lower-data {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 50%;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
   display: flex;
   flex-direction: column;
 }
 
+.upper-data {
+  background: rgb(0, 0, 0); /* Fundo semitransparente para melhorar a legibilidade */
+  color: var(--white);
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  position: relative;
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Adiciona uma sombra para destacar a área do texto */
+}
 .upper-data img {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  z-index: 0;
 }
 
-.weather-data {
+.upper-data .weather-data {
   position: relative;
   z-index: 1;
-  width: 100%;
-  height: 100%;
-  background-color: var(--shadow-dark);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 .location {
-  color: var(--white);
-  text-align: center;
-  font-size: 1.2em;
+  font-size: var(--font-size-large);
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgb(0, 0, 0);
 }
 
 .temperature {
-  color: var(--white);
-  font-size: 4em;
-  text-align: center;
-  font-weight: 900;
+  font-size: var(--font-size-xl);
+  font-weight: bold;
+  color: var(--accent-yellow);
+  text-shadow: 2px 2px 4px rgb(0, 0, 0);
+}
+
+.lower-data {
+  padding: 1.5rem;
+  background: var(--background-gradient-end);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Maior espaçamento entre seções */
 }
 
 .more-info-label {
-  color: var(--white);
-  font-size: 1.9em;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 0.5rem;
+  font-size: var(--font-size-medium);
+  font-weight: bold;
+  color: var(--text-muted);
+  text-align: center;
 }
 
 .more-info-container {
-  flex: 1;
-  background-color: var(--shadow-dark);
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  margin-top: 1em;
-  margin-bottom: 1em;
-  margin-left: 1em;
-  margin-right: 1em;
   display: flex;
-  flex-direction: row;
+  justify-content: space-between;
   flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .info-block {
-  width: 50%;
-  display: flex;
-  flex-direction: row;
-  margin-top: 1em;
-  margin-bottom: 1em;
+  width: calc(50% - 0.5rem);
+  background: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 4px var(--shadow);
+  padding: 1rem;
+  text-align: center;
 }
 
 .info-block-label {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.info-block-label span {
-  color: var(--white);
-  font-size: 0.8em;
-  margin-top: 0.4em;
+  font-size: var(--font-size-small);
+  color: var(--text-muted);
+  margin-bottom: 0.3rem;
 }
 
 .info-block-value {
-  width: 50%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  color: var(--white);
+  font-size: var(--font-size-medium);
+  font-weight: bold;
+  color: var(--primary-blue);
 }
 
 .search {
-  margin-top: 2em;
+  margin: 2rem 0; /* Espaçamento entre a barra de busca e outras seções */
   text-align: center;
 }
 
 .search input {
-  background-color: var(--shadow-dark);
-  outline: none;
-  border: none;
-  border-radius: 20px;
-  padding: 1em;
-  color: #fff;
-  font-size: 0.8em;
+  width: 80%;
+  padding: 0.8rem;
+  border: 1px solid var(--text-muted);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-small);
   text-align: center;
-  width: 70%;
+  transition: border-color var(--transition);
 }
+
+.search input:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+}
+
 .search-icon {
-  margin-left: 1em;
+  margin-left: 1rem;
+  font-size: var(--font-size-medium);
+  color: var(--secondary-blue);
+  cursor: pointer;
 }
